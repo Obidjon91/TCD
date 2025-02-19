@@ -31,7 +31,7 @@ class ConBtn(ft.Container):
         self.bgcolor = "#C0C0C0"
         self.border_radius = 5
         self.padding = 5
-        self.on_hover = self.on_hover
+        self.on_click = lambda event: self.on_hover
         self.content = ft.Row(
             controls=[
                 ft.Icon(name=ft.icons.MENU_OPEN),
@@ -42,5 +42,7 @@ class ConBtn(ft.Container):
         )
 
     def on_hover(self, event):
-        self.bgcolor = "#B2BABB "
+        self.bgcolor = "#B83EB8FF"
+        self.update()
+        self.content.update()
         self.page.update()
