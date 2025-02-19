@@ -13,7 +13,9 @@ def main(page: ft.Page):
     page.bgcolor = "#F2F3F4"
     page.add(
         Header(page=page),
-        ConBtn(page=page),
+        ConBtn(page=page, text_value="Заказ"),
+        ConBtn(page=page, text_value="Инвентаризация"),
+        ConBtn(page=page, text_value="Поступление"),
     )
     page.update()
 
