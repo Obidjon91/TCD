@@ -1,6 +1,7 @@
 import flet as ft
 
-from Modules import Header, ConBtn
+from Modules import ConBtn, MenuBok
+
 
 def main(page: ft.Page):
     page.title = "CalcBarcode"
@@ -11,8 +12,14 @@ def main(page: ft.Page):
     page.window.max_height = 600
     page.window.max_width = 350
     page.bgcolor = "#F2F3F4"
+
+    drawer = MenuBok(page)
+
+    def open_drawer(e):
+        page.open(drawer)
+
     page.add(
-        Header(page=page),
+        ConBtn(page=page, func_on_click=open_drawer, text_value="Открыть меню"),
         ConBtn(page=page, text_value="Заказ"),
         ConBtn(page=page, text_value="Инвентаризация"),
         ConBtn(page=page, text_value="Поступление"),
