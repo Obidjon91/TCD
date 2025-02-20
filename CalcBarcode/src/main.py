@@ -1,31 +1,42 @@
 import flet as ft
 
-from Modules import ConBtn, MenuBok
+from Modules import MenuBok, Main, Header
 
 
-def main(page: ft.Page):
-    page.title = "CalcBarcode"
-    page.horizontal_alignment = "start"
-    page.vertical_alignment = "start"
-    page.window.min_height = 600
-    page.window.min_width = 350
-    page.window.max_height = 600
-    page.window.max_width = 350
-    page.bgcolor = "#F2F3F4"
+class App(ft.Container):
+    def __init__(self, page: ft.Page):
+        super().__init__(expand=True, adaptive=True)
+        # page
+        self.page = page
+        self.page.window.min_height = 600
+        self.page.window.min_width = 350
+        self.page.window.max_height = 600
+        self.page.window.max_width = 350
+        self.page.padding = 0
+        self.page.bgcolor = "#bdc3c7"
 
-    drawer = MenuBok(page)
+        # self container
+        self.margin = 0
 
-    def open_drawer(e):
-        page.open(drawer)
+        # content
 
-    page.add(
-        ConBtn(page=page, func_on_click=open_drawer, text_value="Открыть меню"),
-        ConBtn(page=page, text_value="Заказ"),
-        ConBtn(page=page, text_value="Инвентаризация"),
-        ConBtn(page=page, text_value="Поступление"),
-    )
-    page.update()
+        self.content = ft.Container(
+            margin=0,
+            expand=True,
+            content=ft.Column(
+                [
+                    Header(page=self.page, func=self.open_drawer),
+                    Main(page=self.page),
+                ],
+            ),
+        )
+        # add
+        self.page.add(self)
+
+    # functions
+    def open_drawer(self, e):
+        self.page.open(MenuBok(self.page))
 
 
 if __name__ == "__main__":
-    ft.app(main)
+    ft.app(target=App)
