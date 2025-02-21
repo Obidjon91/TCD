@@ -1,10 +1,25 @@
 import flet as ft
 
 
+class Assembling(ft.Container):
+    def __init__(self, page: ft.Page):
+        super().__init__(expand=True, adaptive=True)
+        self.page = page
+        self.content = ft.Container(
+            expand=True,
+            content=ft.Column(
+                controls=[
+                    Header(page=self.page, func=None, text="Заказ"),
+                ]
+            )
+        )
+        
+
 class Header(ft.Container):
-    def __init__(self, page: ft.Page, func):
+    def __init__(self, page: ft.Page, func, text="TSD"):
         super().__init__()
         self.page = page
+        self.text = text
         self.func = func
         self.padding = ft.padding.only(left=10, right=10)
         self.height = 50
@@ -15,7 +30,7 @@ class Header(ft.Container):
             vertical_alignment=ft.CrossAxisAlignment.CENTER,
             controls=[
                 ft.Container(
-                    content=ft.Text(value="TSD", color="white"),
+                    content=ft.Text(value=self.text, color="white"),
                 ),
                 ft.Container(
                     content=ft.Icon(name=ft.icons.MENU, color="white"),

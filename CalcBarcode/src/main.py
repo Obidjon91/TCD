@@ -1,6 +1,6 @@
 import flet as ft
 
-from Modules import MenuBok, Main, Header
+from Modules import MenuBok, Main, Header, Assembling
 
 
 class App(ft.Container):
@@ -25,8 +25,9 @@ class App(ft.Container):
             expand=True,
             content=ft.Column(
                 [
-                    Header(page=self.page, func=self.open_drawer),
-                    Main(page=self.page),
+                    # Header(page=self.page, func=self.open_drawer),
+                    # Main(page=self.page),
+                    Assembling(page=self.page),
                 ],
             ),
         )
